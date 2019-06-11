@@ -19,6 +19,9 @@ metadata:
     #nginx.ingress.kubernetes.io/auth-tls-secret: "default/ca-secret"
     #nginx.ingress.kubernetes.io/auth-tls-verify-depth: "3"
     #nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+    # Hook
+    # nginx.ingress.kubernetes.io/configuration-snippet: |
+    #   proxy_set_header SSL_CLIENT_CERT $ssl_client_cert;
     # AJP is available in nginx-ingress-controller:0.18.0 and later
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     nginx.ingress.kubernetes.io/affinity: "cookie"
