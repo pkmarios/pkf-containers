@@ -14,7 +14,7 @@ For most HSMs the common driver locations is already known, check conf/web.prope
 
 ## Usage
 
-The example Dockerfile adds PKCS#11 drivers and confiugration for the (FIPS and CC EN 419221-5 certified) [https://www.i4p.com/](Trident HSM), created by I4P. 
+The example Dockerfile adds PKCS#11 drivers and confiugration for the (FIPS and CC EN 419221-5 certified) [Trident HSM](https://www.i4p.com/), created by I4P. 
 
 The Dockerfile can be modified to add drivers of your choice.
 
