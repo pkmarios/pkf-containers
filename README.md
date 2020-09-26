@@ -16,7 +16,6 @@ This repository contains container related tools, examples and documentation.
 
 
 ## Docker containers
+Enterprise Edition containers of PrimeKey applications are made available to customers from a PrimeKey registry. Visit https://www.primekey.com/ for more information.
 
-Community Edition containers of PrimeKey applications are made available on Dockerhub.
-
-See [https://hub.docker.com/r/primekey/](https://hub.docker.com/r/primekey/) for a list of currently published applications.
+Community Edition containers of PrimeKey applications are made available on Dockerhub. See [https://hub.docker.com/r/primekey/](https://hub.docker.com/r/primekey/) for a list of currently published applications.
