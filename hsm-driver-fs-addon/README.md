@@ -4,7 +4,7 @@ When working with HSMs many organizations already have HSMs in place, in many ca
 
 With the above considerations, there is a need to be able to add specific HSM drivers to pre-packaged containers in an easy way.
 
-## Adding HSM drivers on top of the EJBCA container
+## Adding HSM drivers on top of the EJBCA container using docker-compose
 
 The example Dockerfile adds a file system layer with the relevant HSM drivers and configuration on top of the EJBCA container. This is an easy way to add and use PKCS#11 drivers that do not require a running daemon in the container.
 
@@ -20,7 +20,57 @@ The Dockerfile can be modified to add drivers of your choice.
 
 TODO: add command line example how to run docker-compose to build and run the container.
 
-# Docker containers
+## Adding HSM drivers on top of the EJBCA container using file system mounts
+
+Another way to add relevant HSM drivers, along with their configuration, is by using docker volume mounts.
+
+For example to add a Thales DPoD client (as described in the EJBCA documentation) you can simply mount it and run the container.
+
+In EJBCA before 7.5.0:
+```
+sudo mkdir -p /opt/primekey/ejbca/conf
+ 
+echo "httpserver.pubhttp=80
+httpserver.pubhttps=443
+httpserver.privhttps=443
+httpserver.external.privhttps=443
+web.reqcertindb=false
+ 
+#cryptotoken.p11.lib.114.file=/opt/primekey/cloudhsm/lib/libliquidsec_pkcs11.so
+ 
+cryptotoken.p11.lib.255.name=P11 Proxy
+cryptotoken.p11.lib.255.file=/opt/primekey/p11proxy-client/p11proxy-client.so
+cryptotoken.p11.lib.255.canGenerateKeyMsg=ClientToolBox must be used to generate keys for this HSM provider.
+# Normally key generation will be allowed via the UI
+cryptotoken.p11.lib.255.canGenerateKey=true
+ 
+# Enable usage of Azure Key Vault Crypto Token in the Admin UI
+keyvault.cryptotoken.enabled=true
+ 
+# Enable usage of AWS KMS Crypto Token in the Admin UI
+awskms.cryptotoken.enabled=true
+web.docbaseuri=disabled
+ 
+cryptotoken.p11.lib.24.name=Thales DPoD
+cryptotoken.p11.lib.24.file=/opt/thales/dpodclient/libs/64/libCryptoki2.so
+" | sudo tee -a "/opt/primekey/ejbca/conf/web.properties"
+```
+
+Start the container, adding the file system mounts and the environment variable to point to the driver location:
+
+```
+sudo docker run -it --rm --name thales_test -p 80:8080 -p 443:8443 -v /opt/primekey/ejbca/conf/web.properties:/etc/ejbca/conf/web.properties -v /opt/thales:/opt/thales -e ChrystokiConfigurationPath=/opt/thales/dpodclient registry.primekey.se/primekey/ejbca-ee:7.4.3-5
+```
+
+Manually check that files have been mounted correctly:
+
+```
+sudo docker ps
+sudo docker exec -ti thales_test /bin/bash
+ls -al /opt/thales
+```
+
+# EJBCA Docker containers
 
 Enterprise Edition containers of PrimeKey applications are made available to customers from a PrimeKey registry. Visit https://www.primekey.com/ for more information.
 
