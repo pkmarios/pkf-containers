@@ -1,8 +1,6 @@
-# Drivers for Hardware Security Modules (HSMs)
+# Adding Hardware Security Modules (HSMs) drivers to another file system layer
 
-When working with HSMs many organizations already have HSMs in place, in many cases with teams that are experts in managing these HSMs. The HSM PKCS#11 drivers used may be specific approved versions, well tested with the HSM firmware version deployed. Therefore it is hard to include the correct drivers for specific users by default in containers. In addition HSM drivers are distributed under license from the manufacturer, meaning that we may not be allowed to re-distribute drivers integrated with our containers.
-
-With the above considerations, there is a need to be able to add specific HSM drivers to pre-packaged containers in an easy way.
+By taking a release container and adding the PKCS#11 `.so` to the image, you can enable use of the HSM driver.
 
 ## Adding HSM drivers on top of the EJBCA container using docker-compose
 
@@ -27,6 +25,7 @@ Another way to add relevant HSM drivers, along with their configuration, is by u
 For example to add a Thales DPoD client (as described in the EJBCA documentation) you can simply mount it and run the container.
 
 In EJBCA before 7.5.0:
+
 ```
 sudo mkdir -p /opt/primekey/ejbca/conf
  
