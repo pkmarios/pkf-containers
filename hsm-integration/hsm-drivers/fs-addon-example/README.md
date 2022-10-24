@@ -71,6 +71,6 @@ ls -al /opt/thales
 
 # EJBCA Docker containers
 
-Enterprise Edition containers of PrimeKey applications are made available to customers from a PrimeKey registry. Visit https://www.primekey.com/ for more information.
+Enterprise Edition containers of Keyfactor EJBCA applications are made available to customers from a Keyfactor registry. Visit https://www.keyfactor.com/ for more information.
 
-Community Edition containers of PrimeKey applications are made available on Dockerhub. See [https://hub.docker.com/r/primekey/](https://hub.docker.com/r/primekey/) for a list of currently published applications.
+Community Edition containers of Keyfactor EJBCA applications are made available on Dockerhub. See [https://hub.docker.com/r/keyfactor/](https://hub.docker.com/r/keyfactor/ejbca-ce) for a list of currently published applications.

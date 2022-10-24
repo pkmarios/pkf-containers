@@ -2,8 +2,8 @@ FROM registry.primekey.com/primekey/ejbca-ee
 
 USER root
 
-RUN yum install -y which 
-RUN mkdir /opt/pkcs11
+RUN yum install -y which &&\
+    mkdir /opt/pkcs11
 
 COPY pkcs11/mpcm-pkcs11.conf /opt/pkcs11/
 COPY pkcs11/libcmapi.so.1.6.0 /usr/lib64
