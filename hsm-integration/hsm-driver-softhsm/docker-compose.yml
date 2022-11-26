@@ -24,7 +24,7 @@ services:
     # Build your specific the driver on top of from registry.primekey.com/primekey/hsm-driver-base
     # This example is using SoftHSMv2 to mock a netHSM
     build:
-      context: ./hsm-driver-softhsm
+      context: .
       dockerfile: Containerfile
     networks:
       - hsm-driver-bridge

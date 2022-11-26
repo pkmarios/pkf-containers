@@ -26,7 +26,7 @@ RUN \
 ### Package hsm-driver-softhsm
 ###
 
-FROM registry.primekey.com/primekey/hsm-driver-base:0.4.20
+FROM registry.primekey.com/primekey/hsm-driver-base:0.4.25
 
 # Run build as root
 USER 0:0
