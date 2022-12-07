@@ -1,20 +1,13 @@
 ![PrimeKey](../../primekey_logo.png)
 
-# Side-car pattern for Hardware Security Module (HSM) integration
+See the provided docker-compose.yml for an example of how to use a net-HSM (mocked by SoftHSMv2) with EJBCA:
 
-EE application users can leverage a proprietary module packaged as a container to invoke the HSM specific PKCS#11 library over (Pod-local) network.
-
-<a href="hsm-driver-pattern.png"><img src="hsm-driver-pattern.png" width="720"/></a>
-
-This enables rolling updates of either hsm-driver or application container without the risk of application container library changes breaking the HSM driver.
-
-See the provided `docker-compose.yml` for an example of how to use a net-HSM (mocked by SoftHSMv2) with EJBCA:
 
 ```
 docker-compose up --build
 ```
 
-For Kubernetes/Openshift the `docker-compose` example corresponds to:
+For Kubernetes/Openshift, the `docker-compose` example corresponds to:
 
 ```
 apiVersion: apps/v1
@@ -39,7 +32,7 @@ spec:
           value: INFO
         ...
       - name: application
-        image: registry.primekey.com/primekey/ejbca-ee:7.7.0
+        image: registry.primekey.com/primekey/ejbca-ee:7.10.0.1
         ...
         volumeMounts:
         - name: p11proxy-client
